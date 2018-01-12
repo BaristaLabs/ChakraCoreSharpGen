@@ -5,4 +5,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="SharpGen">
+      <HintPath>..\bin\SharpGen\SharpGen.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
