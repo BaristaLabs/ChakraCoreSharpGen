@@ -16,22 +16,61 @@
             ConfigFile config = new ConfigFile()
             {
                 Id = "ChakraCore",
-                Assembly = "Test123",
-                Namespace = "Test123",
-                //IncludeDirs =
-                //{
-                //    new IncludeDirRule
-                //    {
-                //        Path = @"C:\Projects\chakracore\lib\Jsrt\"
-                //    }
-                //},
+                Assembly = "BaristaLabs.ChakraCore",
+                Namespace = "BaristaLabs.ChakraCore",
+                IncludeDirs =
+                {
+                    new IncludeDirRule
+                    {
+                        Path = @"C:\Projects\chakracore\lib\Jsrt\"
+                    }
+                },
                 Includes =
                 {
                     new IncludeRule
                     {
                         Attach = true,
+                        File = @"C:\Projects\chakracore\lib\Jsrt\ChakraCommon.h",
+                        Namespace = "ChakraCommon",
+                    },
+                    new IncludeRule
+                    {
+                        Attach = true,
                         File = @"C:\Projects\chakracore\lib\Jsrt\ChakraCore.h",
-                        Namespace = "BaristaLabs.ChakraSharp",
+                        Namespace = "ChakraCore",
+                    },
+                },
+                Extension =
+                {
+                    new CreateExtensionRule
+                    {
+                        NewClass = $"BaristaLabs.ChakraCore.Functions",
+                    }
+                },
+                Bindings =
+                {
+                    //Primitive bindings
+                    new BindRule("void", "System.Void"),
+                    new BindRule("int", "System.Int32"),
+                    new BindRule("unsigned int", "System.Int32"),
+                    new BindRule("short", "System.Int16"),
+                    new BindRule("unsigned short", "System.Int16"),
+                    new BindRule("unsigned char", "System.Byte"),
+                    new BindRule("longlong", "System.Int64"),
+                    new BindRule("unsigned longlong", "System.Int64"),
+                    new BindRule("float", "System.Single"),
+                    new BindRule("double", "System.Double"),
+                    new BindRule("bool", "System.Boolean"),
+
+                    new BindRule("__function__stdcall", "SharpDX.FunctionCallback"),
+                },
+                Mappings =
+                {
+                    new MappingRule
+                    {
+                        Function = "Js.*",
+                        FunctionDllName = "\"libChakraCore\"",
+                        CsClass = "BaristaLabs.ChakraCore.Functions"
                     }
                 }
             };
