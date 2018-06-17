@@ -70,7 +70,6 @@
                     {
                         Function = "Js.*",
                         FunctionDllName = "\"libChakraCore\"",
-                        CsClass = "BaristaLabs.ChakraCore.Functions"
                     }
                 }
             };
@@ -79,7 +78,7 @@
             var chakraSharpDir = Directory.CreateDirectory("../output/ChakraSharp");
             var intermediateOutputDir = Directory.CreateDirectory("../output/temp");
 
-            var castXmlPath = Path.GetFullPath("../lib/CastXML/bin/castxml.exe");
+            var castXmlPath = Path.GetFullPath("../../../../lib/CastXML/bin/castxml.exe");
             if (!File.Exists(castXmlPath))
             {
                 throw new InvalidOperationException("Unable to locate CastXml at " + castXmlPath);

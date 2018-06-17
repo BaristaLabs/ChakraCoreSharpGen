@@ -30,7 +30,7 @@
             if (Output == null)
                 return;
 
-            Log(LogLevel.Error, new LogLocation(""), "", "Process stopped. " + reason, null);
+            Log(LogLevel.Error, LogLocation.EmptyLocation, "", "", "Process stopped. " + reason, null);
             Environment.Exit(exitCode);
         }
 
@@ -40,10 +40,11 @@
         /// <param name="logLevel">The log level</param>
         /// <param name="logLocation">The log location.</param>
         /// <param name="context">The context.</param>
+        /// <param name="code">The code.</param>
         /// <param name="message">The message.</param>
         /// <param name="exception">The exception.</param>
         /// <param name="parameters">The parameters.</param>
-        public override void Log(LogLevel logLevel, LogLocation logLocation, string context, string message, Exception exception, params object[] parameters)
+        public override void Log(LogLevel logLevel, LogLocation logLocation, string context, string code, string message, Exception exception, params object[] parameters)
         {
             lock (this)
             {
@@ -56,7 +57,7 @@
                 Output.Flush();
 
                 if (exception != null)
-                    LogException(logLocation, exception);
+                    Output.WriteLine(exception.ToString());
             }
         }
     }
